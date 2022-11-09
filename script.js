@@ -44,6 +44,7 @@ function updateCalculatorState(buttonInfo) {
   //DECIMAL
   if (buttonInfo.type === 'decimal') processDecimalButton();
   //PERCENTAGE
+  if (buttonInfo.type === 'percentage') processPercentageButton();
   //1/X
   //SQUARE ROOT
   //ADDITION
@@ -85,6 +86,14 @@ function processDecimalButton() {
   } else {
     if (calculator.secondOperand.includes('.')) return;
     calculator.secondOperand += '.';
+  }
+}
+
+function processPercentageButton() {
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand = Number(calculator.firstOperand)/100;
+  } else {
+    calculator.secondOperand = Number(calculator.secondOperand)/100;
   }
 }
 
