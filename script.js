@@ -51,7 +51,33 @@ function updateCalculatorState(buttonInfo) {
   if (buttonInfo.type === 'clear') processClearButton();
   if (buttonInfo.type === 'equal') processEqualButton(buttonInfo.type);
 
+  updateCurrentOperatingScreenUI();
+
   console.log(calculator)
+}
+
+
+function updateCurrentOperatingScreenUI() {
+  const currentOperatingScreen = document.querySelector('.current-operating-screen');
+
+  if (calculator.secondOperand) {
+    const operatorSymbol = getOperatorSymbol(calculator.currentOperator);
+    currentOperatingScreen.textContent = `${calculator.firstOperand} ${operatorSymbol} ${calculator.secondOperand}`;
+  } else if (calculator.currentOperator) {
+    const operatorSymbol = getOperatorSymbol(calculator.currentOperator);
+    currentOperatingScreen.textContent = `${calculator.firstOperand} ${operatorSymbol}`;
+  } else if (calculator.firstOperand) {
+    currentOperatingScreen.textContent = `${calculator.firstOperand}`;
+  }
+  console.log(currentOperatingScreen.textContent)
+}
+
+
+function getOperatorSymbol(operator) {
+  if (operator === 'addition') return '+';
+  if (operator === 'subtraction') return '-';
+  if (operator === 'multiplication') return 'x';
+  if (operator === 'division') return '÷';
 }
 
 
@@ -110,7 +136,6 @@ function processOperatorButton(operator) {
   calculator.currentOperator = operator;
   if (calculator.currentOperand === 'second') {
     calculator.firstOperand = String(evaluate(operator));
-    console.log(calculator.firstOperand)
     calculator.secondOperand = '';
   } else {
     calculator.currentOperand = 'second';
