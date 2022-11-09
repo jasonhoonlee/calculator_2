@@ -3,6 +3,7 @@
 
 const calculator = {
   currentScreen: '',
+  currentOperatingScreen: '',
   firstOperand: '',
   secondOperand: '',
   currentOperand: 'first',
@@ -12,8 +13,46 @@ const calculator = {
 
 
 
-(function() {
 
-})()
+
+
+//add A event listener to each button
+function processButton(e) {
+  const clickedButton = e.target;
+  const buttonInfo = getButtonIdentity(clickedButton);
+  //update calculator state
+  //update COS
+  //update CS
+}
+
+
+function getButtonIdentity(clickedButton) {
+  const buttonClassList = clickedButton.classList;
+  const type = buttonClassList[1];
+  if (type === 'number') {
+    let value;
+    value = clickedButton.textContent;
+    return {type, value};
+  }
+  return {type}
+
+}
+
+
+
+function processNumberButton(value) {
+  if (calculator.currentOperand === 'first') calculator.firstOperand += value;
+  else calculator.secondOperand += value;
+  console.log(calculator)
+}
+
+
+
+
+
+(function() {
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(button => button.addEventListener('click', processButton));
+})();
 
 
