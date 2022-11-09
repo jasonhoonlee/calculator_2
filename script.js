@@ -107,7 +107,7 @@ function evaluate(operator) {
     return Number(calculator.firstOperand) / Number(calculator.secondOperand);
   }
   if (operator === 'multiplication') {
-    returnNumber(calculator.firstOperand) * Number(calculator.secondOperand);
+    return Number(calculator.firstOperand) * Number(calculator.secondOperand);
   }
 }
 
