@@ -133,13 +133,13 @@ function processSignButton() {
 
 function processOperatorButton(operator) {
 
-  calculator.currentOperator = operator;
   if (calculator.currentOperand === 'second') {
-    calculator.firstOperand = String(evaluate(operator));
+    calculator.firstOperand = String(evaluate(calculator.currentOperator));
     calculator.secondOperand = '';
   } else {
     calculator.currentOperand = 'second';
   }
+  calculator.currentOperator = operator;
 
 }
 
