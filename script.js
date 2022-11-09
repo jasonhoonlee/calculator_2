@@ -46,6 +46,7 @@ function updateCalculatorState(buttonInfo) {
   //PERCENTAGE
   if (buttonInfo.type === 'percentage') processPercentageButton();
   //1/X
+  if (buttonInfo.type === 'one-over') processOneOverButton();
   //SQUARE ROOT
   //ADDITION
   //SUBTRACTION
@@ -95,6 +96,15 @@ function processPercentageButton() {
   } else {
     calculator.secondOperand = Number(calculator.secondOperand)/100;
   }
+}
+
+function processOneOverButton() {
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand = 1/Number(calculator.firstOperand);
+  } else {
+    calculator.secondOperand = 1/Number(calculator.secondOperand);
+  }
+  console.log(calculator)
 }
 
 
