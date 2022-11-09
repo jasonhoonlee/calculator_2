@@ -49,8 +49,17 @@ function updateCalculatorState(buttonInfo) {
   }
   if (buttonInfo.type === 'delete') processDeleteButton();
   if (buttonInfo.type === 'clear') processClearButton();
+  if (buttonInfo.type === 'equal') processEqualButton(buttonInfo.type);
 
   console.log(calculator)
+}
+
+
+function processEqualButton() {
+  calculator.firstOperand = String(evaluate(calculator.currentOperator));
+  calculator.secondOperand = '';
+  calculator.currentOperand = 'second';
+  calculator.currentOperator = null;
 }
 
 
