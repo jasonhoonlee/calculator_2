@@ -50,10 +50,14 @@ function updateCalculatorState(buttonInfo) {
   //SQUARE ROOT
   if (buttonInfo.type === 'radical') processSquareRootButton();
   //ADDITION
-  //SUBTRACTION
-  //DIVISION
-  //MULTIPLICATION
-  //EVALUATOR
+  if (buttonInfo.type === 'addition' || buttonInfo.type === 'subtraction' ||
+      buttonInfo.type === 'multiplication' || buttonInfo.type === 'division') {
+
+    processOperatorButton(buttonInfo.type);
+
+  }
+
+  console.log(calculator)
 }
 
 
@@ -76,6 +80,34 @@ function processSignButton() {
     } else {
       calculator.secondOperand = `(-${calculator.secondOperand})`;
     }
+  }
+}
+
+function processOperatorButton(operator) {
+
+  calculator.currentOperator = operator;
+  if (calculator.currentOperand === 'second') {
+    calculator.firstOperand = String(evaluate(operator));
+    console.log(calculator.firstOperand)
+    calculator.secondOperand = '';
+  } else {
+    calculator.currentOperand = 'second';
+  }
+
+}
+
+function evaluate(operator) {
+  if (operator === 'addition') {
+    return Number(calculator.firstOperand) + Number(calculator.secondOperand);
+  }
+  if (operator === 'subtraction') {
+    return Number(calculator.firstOperand) - Number(calculator.secondOperand);
+  }
+  if (operator === 'division') {
+    return Number(calculator.firstOperand) / Number(calculator.secondOperand);
+  }
+  if (operator === 'multiplication') {
+    returnNumber(calculator.firstOperand) * Number(calculator.secondOperand);
   }
 }
 
