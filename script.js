@@ -48,6 +48,7 @@ function updateCalculatorState(buttonInfo) {
   //1/X
   if (buttonInfo.type === 'one-over') processOneOverButton();
   //SQUARE ROOT
+  if (buttonInfo.type === 'radical') processSquareRootButton();
   //ADDITION
   //SUBTRACTION
   //DIVISION
@@ -105,6 +106,13 @@ function processOneOverButton() {
   }
 }
 
+function processSquareRootButton() {
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand = Math.sqrt(calculator.firstOperand);
+  } else {
+    calculator.secondOperand = Math.sqrt(calculator.secondOperand);
+  }
+}
 
 
 
