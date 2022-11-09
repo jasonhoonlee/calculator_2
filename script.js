@@ -80,7 +80,6 @@ function processSignButton() {
 
 
 function processDecimalButton() {
-
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand.includes('.')) return;
     calculator.firstOperand += '.';
@@ -104,7 +103,6 @@ function processOneOverButton() {
   } else {
     calculator.secondOperand = 1/Number(calculator.secondOperand);
   }
-  console.log(calculator)
 }
 
 
