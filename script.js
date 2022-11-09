@@ -13,14 +13,12 @@ const calculator = {
 
 
 
-
-
-
 //add A event listener to each button
 function processButton(e) {
   const clickedButton = e.target;
   const buttonInfo = getButtonIdentity(clickedButton);
   //update calculator state
+  updateCalculatorState(buttonInfo)
   //update COS
   //update CS
 }
@@ -39,6 +37,22 @@ function getButtonIdentity(clickedButton) {
 }
 
 
+function updateCalculatorState(buttonInfo) {
+  //NUMBER
+  if (buttonInfo.type === 'number') processNumberButton(buttonInfo.value);
+  //NUMBER SIGN
+  //DECIMAL
+  //PERCENTAGE
+  //1/X
+  //SQUARE ROOT
+  //ADDITION
+  //SUBTRACTION
+  //DIVISION
+  //MULTIPLICATION
+  //EVALUATOR
+}
+
+
 
 function processNumberButton(value) {
   if (calculator.currentOperand === 'first') calculator.firstOperand += value;
@@ -54,5 +68,3 @@ function processNumberButton(value) {
   const buttons = document.querySelectorAll('.btn');
   buttons.forEach(button => button.addEventListener('click', processButton));
 })();
-
-
