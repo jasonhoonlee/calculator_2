@@ -52,13 +52,23 @@ function updateCalculatorState(buttonInfo) {
   //ADDITION
   if (buttonInfo.type === 'addition' || buttonInfo.type === 'subtraction' ||
       buttonInfo.type === 'multiplication' || buttonInfo.type === 'division') {
-
     processOperatorButton(buttonInfo.type);
-
   }
+  if (buttonInfo.type === 'delete') processDeleteButton();
+
 
   console.log(calculator)
 }
+
+
+function processDeleteButton() {
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
+  } else {
+    calculator.firstOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
+  }
+}
+
 
 
 
