@@ -37,25 +37,18 @@ function getButtonIdentity(clickedButton) {
 
 
 function updateCalculatorState(buttonInfo) {
-  //NUMBER
   if (buttonInfo.type === 'number') processNumberButton(buttonInfo.value);
-  //NUMBER SIGN
   if (buttonInfo.type === 'sign') processSignButton();
-  //DECIMAL
   if (buttonInfo.type === 'decimal') processDecimalButton();
-  //PERCENTAGE
   if (buttonInfo.type === 'percentage') processPercentageButton();
-  //1/X
   if (buttonInfo.type === 'one-over') processOneOverButton();
-  //SQUARE ROOT
   if (buttonInfo.type === 'radical') processSquareRootButton();
-  //ADDITION
   if (buttonInfo.type === 'addition' || buttonInfo.type === 'subtraction' ||
       buttonInfo.type === 'multiplication' || buttonInfo.type === 'division') {
     processOperatorButton(buttonInfo.type);
   }
   if (buttonInfo.type === 'delete') processDeleteButton();
-
+  if (buttonInfo.type === 'clear') processClearButton();
 
   console.log(calculator)
 }
@@ -69,8 +62,18 @@ function processDeleteButton() {
   }
 }
 
+function processClearButton() {
+  resetCalculatorState();
+}
 
-
+function resetCalculatorState() {
+  calculator.firstOperand = '';
+  calculator.secondOperand = '';
+  calculator.currentOperand = 'first';
+  calculator.currentScreen = '';
+  calculator.currentOperatingScreen = '';
+  calculator.currentOperator = null;
+}
 
 function processNumberButton(value) {
   if (calculator.currentOperand === 'first') calculator.firstOperand += value;
