@@ -42,6 +42,7 @@ function updateCalculatorState(buttonInfo) {
   //NUMBER SIGN
   if (buttonInfo.type === 'sign') processSignButton();
   //DECIMAL
+  if (buttonInfo.type === 'decimal') processDecimalButton();
   //PERCENTAGE
   //1/X
   //SQUARE ROOT
@@ -57,7 +58,6 @@ function updateCalculatorState(buttonInfo) {
 function processNumberButton(value) {
   if (calculator.currentOperand === 'first') calculator.firstOperand += value;
   else calculator.secondOperand += value;
-  console.log(calculator)
 }
 
 function processSignButton() {
@@ -76,6 +76,17 @@ function processSignButton() {
   }
 }
 
+
+function processDecimalButton() {
+
+  if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand.includes('.')) return;
+    calculator.firstOperand += '.';
+  } else {
+    if (calculator.secondOperand.includes('.')) return;
+    calculator.secondOperand += '.';
+  }
+}
 
 
 
