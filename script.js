@@ -58,7 +58,7 @@ function processDeleteButton() {
   if (calculator.currentOperand === 'first') {
     calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
   } else {
-    calculator.firstOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
+    calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
   }
 }
 
