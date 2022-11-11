@@ -37,6 +37,7 @@ function getButtonIdentity(clickedButton) {
 }
 
 
+
 function updateCalculatorState(buttonInfo) {
   if (buttonInfo.type === 'number') processNumberButton(buttonInfo.value);
   if (buttonInfo.type === 'sign') processSignButton();
@@ -55,14 +56,21 @@ function updateCalculatorState(buttonInfo) {
 }
 
 
+function resetCalculatorState() {
+  calculator.firstOperand = '';
+  calculator.secondOperand = '';
+  calculator.currentOperand = 'first';
+  calculator.currentScreen = '';
+  calculator.currentOperatingScreen = '';
+  calculator.currentOperator = null;
+}
+
+
 function updateCurrentOperatingScreenUI() {
   const currentOperatingScreen = document.querySelector('.current-operating-screen');
 
 
 }
-
-
-
 
 
 function getOperatorSymbol(operator) {
@@ -73,36 +81,23 @@ function getOperatorSymbol(operator) {
 }
 
 
-function processEqualButton() {
-  //if both operands are not defined return
-  if (!calculator.firstOperand || !calculator.secondOperand) return;
-  calculator.firstOperand = String(evaluate(calculator.currentOperator));
-  calculator.secondOperand = '';
-  calculator.currentOperand = 'second';
-  calculator.currentOperator = null;
-}
 
-
-function processDeleteButton() {
-  if (calculator.currentOperand === 'first') {
-    calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
-  } else {
-    calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
+function evaluate(operator) {
+  if (operator === 'addition') {
+    return Number(calculator.firstOperand) + Number(calculator.secondOperand);
+  }
+  if (operator === 'subtraction') {
+    return Number(calculator.firstOperand) - Number(calculator.secondOperand);
+  }
+  if (operator === 'division') {
+    return Number(calculator.firstOperand) / Number(calculator.secondOperand);
+  }
+  if (operator === 'multiplication') {
+    return Number(calculator.firstOperand) * Number(calculator.secondOperand);
   }
 }
 
-function processClearButton() {
-  resetCalculatorState();
-}
 
-function resetCalculatorState() {
-  calculator.firstOperand = '';
-  calculator.secondOperand = '';
-  calculator.currentOperand = 'first';
-  calculator.currentScreen = '';
-  calculator.currentOperatingScreen = '';
-  calculator.currentOperator = null;
-}
 
 function processNumberButton(value) {
   if (calculator.currentOperand === 'first') calculator.firstOperand += value;
@@ -135,21 +130,6 @@ function processOperatorButton(operator) {
   }
   calculator.currentOperator = operator;
 
-}
-
-function evaluate(operator) {
-  if (operator === 'addition') {
-    return Number(calculator.firstOperand) + Number(calculator.secondOperand);
-  }
-  if (operator === 'subtraction') {
-    return Number(calculator.firstOperand) - Number(calculator.secondOperand);
-  }
-  if (operator === 'division') {
-    return Number(calculator.firstOperand) / Number(calculator.secondOperand);
-  }
-  if (operator === 'multiplication') {
-    return Number(calculator.firstOperand) * Number(calculator.secondOperand);
-  }
 }
 
 
@@ -185,6 +165,29 @@ function processSquareRootButton() {
   } else {
     calculator.secondOperand = Math.sqrt(calculator.secondOperand);
   }
+}
+
+
+function processDeleteButton() {
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
+  } else {
+    calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
+  }
+}
+
+function processClearButton() {
+  resetCalculatorState();
+}
+
+
+function processEqualButton() {
+  //if both operands are not defined return
+  if (!calculator.firstOperand || !calculator.secondOperand) return;
+  calculator.firstOperand = String(evaluate(calculator.currentOperator));
+  calculator.secondOperand = '';
+  calculator.currentOperand = 'second';
+  calculator.currentOperator = null;
 }
 
 
