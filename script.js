@@ -69,9 +69,29 @@ function resetCalculatorState() {
 }
 
 
-function updateCurrentOperatingScreenUI() {
+function updateCurrentOperatingScreenUI(buttonType) {
+
   const currentOperatingScreen = document.querySelector('.current-operating-screen');
 
+  if (buttonType === 'equal') {
+    currentOperatingScreen.textContent = calculator.currentOperatingScreen;
+    return;
+  }
+
+  if (calculator.secondOperand) {
+    currentOperatingScreen.textContent = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
+    return;
+  }
+
+  if (calculator.currentOperator) {
+    currentOperatingScreen.textContent = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)}`;
+    return;
+  }
+
+  if (calculator.firstOperand) {
+    currentOperatingScreen.textContent = `${calculator.firstOperand}`;
+    return;
+  }
 
 }
 
@@ -189,7 +209,7 @@ function processEqualButton() {
   const result = String(evaluate(calculator.currentOperator));
 
   calculator.currentScreen = result;
-  calculator.currentOperatingScreen = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand} =`;
+  calculator.currentOperatingScreen = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand} =`;
 
   calculator.firstOperand = result;
   calculator.secondOperand = '';
