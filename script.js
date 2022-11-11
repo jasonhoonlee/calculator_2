@@ -51,21 +51,13 @@ function updateCalculatorState(buttonInfo) {
   if (buttonInfo.type === 'delete') processDeleteButton();
   if (buttonInfo.type === 'clear') processClearButton();
   if (buttonInfo.type === 'equal') processEqualButton();
+
 }
 
 
 function updateCurrentOperatingScreenUI() {
   const currentOperatingScreen = document.querySelector('.current-operating-screen');
 
-  if (calculator.secondOperand) {
-    const operatorSymbol = getOperatorSymbol(calculator.currentOperator);
-    currentOperatingScreen.textContent = `${calculator.firstOperand} ${operatorSymbol} ${calculator.secondOperand}`;
-  } else if (calculator.currentOperator) {
-    const operatorSymbol = getOperatorSymbol(calculator.currentOperator);
-    currentOperatingScreen.textContent = `${calculator.firstOperand} ${operatorSymbol}`;
-  } else if (calculator.firstOperand) {
-    currentOperatingScreen.textContent = `${calculator.firstOperand}`;
-  }
 
 }
 
