@@ -17,8 +17,12 @@ const calculator = {
 function processButton(e) {
   const clickedButton = e.target;
   const buttonInfo = getButtonIdentity(clickedButton);
+  if (!calculator.firstOperand) {
+    if (buttonInfo.type !== 'number') return;
+  }
   //update calculator state
   updateCalculatorState(buttonInfo)
+  console.log(calculator)
   //update COS
   updateCurrentOperatingScreenUI(buttonInfo.type);
   //update CS
