@@ -22,10 +22,9 @@ function processButton(e) {
   }
   //update calculator state
   updateCalculatorState(buttonInfo)
-  console.log(calculator)
   //update COS
   updateCurrentOperatingScreenUI(buttonInfo.type);
-  //update CS
+
 }
 
 
@@ -186,9 +185,13 @@ function processClearButton() {
 
 
 function processEqualButton() {
-  //if both operands are not defined return
   if (!calculator.firstOperand || !calculator.secondOperand) return;
-  calculator.firstOperand = String(evaluate(calculator.currentOperator));
+  const result = String(evaluate(calculator.currentOperator));
+
+  calculator.currentScreen = result;
+  calculator.currentOperatingScreen = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand} =`;
+
+  calculator.firstOperand = result;
   calculator.secondOperand = '';
   calculator.currentOperand = 'second';
   calculator.currentOperator = null;
