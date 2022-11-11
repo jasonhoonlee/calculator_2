@@ -69,8 +69,11 @@ function updateCurrentOperatingScreenUI() {
   } else if (calculator.firstOperand) {
     currentOperatingScreen.textContent = `${calculator.firstOperand}`;
   }
-  console.log(currentOperatingScreen.textContent)
+
 }
+
+
+
 
 
 function getOperatorSymbol(operator) {
@@ -82,6 +85,8 @@ function getOperatorSymbol(operator) {
 
 
 function processEqualButton() {
+  //if both operands are not defined return
+  if (!calculator.firstOperand || !calculator.secondOperand) return;
   calculator.firstOperand = String(evaluate(calculator.currentOperator));
   calculator.secondOperand = '';
   calculator.currentOperand = 'second';
