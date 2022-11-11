@@ -20,6 +20,7 @@ function processButton(e) {
   //update calculator state
   updateCalculatorState(buttonInfo)
   //update COS
+  updateCurrentOperatingScreenUI(buttonInfo.type);
   //update CS
 }
 
@@ -49,11 +50,7 @@ function updateCalculatorState(buttonInfo) {
   }
   if (buttonInfo.type === 'delete') processDeleteButton();
   if (buttonInfo.type === 'clear') processClearButton();
-  if (buttonInfo.type === 'equal') processEqualButton(buttonInfo.type);
-
-  updateCurrentOperatingScreenUI();
-
-  console.log(calculator)
+  if (buttonInfo.type === 'equal') processEqualButton();
 }
 
 
