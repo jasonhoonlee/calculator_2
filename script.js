@@ -8,6 +8,7 @@ const calculator = {
   secondOperand: '',
   currentOperand: 'first',
   currentOperator: null,
+  lastButton: null,
 }
 
 
@@ -20,9 +21,8 @@ function processButton(e) {
   if (!calculator.firstOperand) {
     if (buttonInfo.type !== 'number') return;
   }
-  //update calculator state
-  updateCalculatorState(buttonInfo)
-  //update COS
+
+  updateCalculatorState(buttonInfo);
   updateCurrentOperatingScreenUI(buttonInfo.type);
 
 }
@@ -66,6 +66,7 @@ function resetCalculatorState() {
   calculator.currentScreen = '';
   calculator.currentOperatingScreen = '';
   calculator.currentOperator = null;
+  calculator.lastButton = null;
 }
 
 
@@ -145,14 +146,21 @@ function processSignButton() {
 
 function processOperatorButton(operator) {
 
+  calculator.currentOperator = operator;
+  //if last button was equal
+  if (calculator.lastButton === 'equal') {
+    calculator.lastButton = 'operator';
+    return;
+  }
+
   if (calculator.currentOperand === 'second') {
     calculator.firstOperand = String(evaluate(calculator.currentOperator));
     calculator.secondOperand = '';
   } else {
     calculator.currentOperand = 'second';
   }
-  calculator.currentOperator = operator;
 
+  calculator.lastButton = 'operator';
 }
 
 
@@ -215,6 +223,7 @@ function processEqualButton() {
   calculator.secondOperand = '';
   calculator.currentOperand = 'second';
   calculator.currentOperator = null;
+  calculator.lastButton = 'equal';
 }
 
 
