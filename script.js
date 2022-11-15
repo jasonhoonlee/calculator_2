@@ -132,9 +132,65 @@ function evaluate(operator) {
 
 
 function processNumberButton(value) {
-  if (calculator.currentOperand === 'first') calculator.firstOperand += value;
-  else calculator.secondOperand += value;
+  if (calculator.lastButton === 'percentage' || calculator.lastButton === 'one-over' || calculator.lastButton === 'radical') {
+    return;
+  }
+
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand += value;
+    calculator.lastOperation = `${calculator.firstOperand}`;
+  } else {
+    calculator.secondOperand += value;
+    calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
+  }
+  calculator.lastButton = 'number';
+  calculator.currentScreen = '';
+
+  console.log(calculator)
 }
+
+function processOperatorButton(operator) {
+  if (calculator.lastButton === 'operator') return;
+  if (!calculator.firstOperand) return;
+
+  if (calculator.firstOperand && calculator.secondOperand) {
+    calculator.firstOperand = String(evaluate(calculator.currentOperator));
+    calculator.secondOperand = '';
+  }
+
+  calculator.currentOperand = 'second';
+  calculator.currentOperator = operator;
+  calculator.lastButton = 'operator';
+  calculator.currentScreen = '';
+
+  calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)}`;
+
+  console.log(calculator)
+}
+
+function processEqualButton() {
+  if (calculator.lastButton === 'equal') return;
+  if (calculator.lastButton === 'operator') return;
+  if (!calculator.firstOperand || !calculator.secondOperand) return;
+
+  //update last operation
+  calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand} =`
+  //update right operand
+  const result = String(evaluate(calculator.currentOperator));
+  calculator.firstOperand = result;
+  calculator.secondOperand = '';
+  //update current operand
+  calculator.currentOperand = 'second';
+  //update last button
+  calculator.lastButton = 'equal';
+  //update current screen
+  calculator.currentScreen = result;
+
+
+  console.log(calculator)
+}
+
+
 
 function processSignButton() {
   if (calculator.currentOperand === 'first') {
@@ -150,26 +206,6 @@ function processSignButton() {
       calculator.secondOperand = `(-${calculator.secondOperand})`;
     }
   }
-}
-
-function processOperatorButton(operator) {
-
-  calculator.currentOperator = operator;
-  //if last button was equal
-  if (calculator.lastButton === 'equal') {
-    calculator.lastButton = 'operator';
-    calculator.currentScreen = '';
-    return;
-  }
-
-  if (calculator.currentOperand === 'second') {
-    calculator.firstOperand = String(evaluate(calculator.currentOperator));
-    calculator.secondOperand = '';
-  } else {
-    calculator.currentOperand = 'second';
-  }
-
-  calculator.lastButton = 'operator';
 }
 
 
