@@ -24,6 +24,7 @@ function processButton(e) {
 
   updateCalculatorState(buttonInfo);
   updateCurrentOperatingScreenUI(buttonInfo.type);
+  updateCurrentScreenUI();
 
 }
 
@@ -96,6 +97,12 @@ function updateCurrentOperatingScreenUI(buttonType) {
 
 }
 
+function updateCurrentScreenUI() {
+  if (!calculator.currentScreen) return;
+  const currentScreen = document.querySelector('.current-screen');
+  currentScreen.textContent = calculator.currentScreen;
+}
+
 
 function getOperatorSymbol(operator) {
   if (operator === 'addition') return '+';
@@ -150,6 +157,7 @@ function processOperatorButton(operator) {
   //if last button was equal
   if (calculator.lastButton === 'equal') {
     calculator.lastButton = 'operator';
+    calculator.currentScreen = '';
     return;
   }
 
