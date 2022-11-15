@@ -68,6 +68,7 @@ function resetCalculatorState() {
   calculator.currentOperatingScreen = '';
   calculator.currentOperator = null;
   calculator.lastButton = null;
+  calculator.lastOperation = null;
 }
 
 
@@ -76,7 +77,7 @@ function updateCurrentOperatingScreenUI(buttonType) {
   const currentOperatingScreen = document.querySelector('.current-operating-screen');
 
   if (buttonType === 'equal') {
-    currentOperatingScreen.textContent = calculator.currentOperatingScreen;
+    currentOperatingScreen.textContent = calculator.lastOperation;
     return;
   }
 
