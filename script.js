@@ -204,19 +204,35 @@ function processEqualButton() {
 
 
 function processSignButton() {
-  if (calculator.currentOperand === 'first') {
-    if (calculator.firstOperand.includes('-')) {
-      calculator.firstOperand = calculator.firstOperand.slice(2, calculator.firstOperand.length-1);
+
+    if (calculator.lastButton === 'percentage') return;
+    if (calculator.lastButton === 'one-over') return;
+    if (calculator.lastButton === 'radical') return;
+
+    if (calculator.currentOperand === 'first') {
+      if (calculator.firstOperand.includes('-')) {
+        calculator.firstOperand = calculator.firstOperand.slice(1, calculator.firstOperand.length);
+      } else {
+        calculator.firstOperand = '-' + calculator.firstOperand;
+      }
     } else {
-      calculator.firstOperand = `(-${calculator.firstOperand})`;
+      if (calculator.secondOperand.includes('-')) {
+        calculator.secondOperand = calculator.secondOperand.slice(1, calculator.secondOperand.length);
+      } else {
+        calculator.secondOperand = '-' + calculator.secondOperand;
+      }
     }
-  } else {
-    if (calculator.secondOperand.includes('-')) {
-      calculator.secondOperand = calculator.secondOperand.slice(2, calculator.secondOperand.length-1);
+
+    calculator.lastButton === 'sign';
+
+    if (calculator.currentOperand === 'first') {
+      calculator.lastOperation = `${calculator.firstOperand}`;
     } else {
-      calculator.secondOperand = `(-${calculator.secondOperand})`;
+      calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
     }
-  }
+
+    calculator.currentScreen = '';
+
 }
 
 
