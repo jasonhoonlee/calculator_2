@@ -215,22 +215,17 @@ function processSignButton() {
       } else {
         calculator.firstOperand = '-' + calculator.firstOperand;
       }
+      calculator.lastOperation = `${calculator.firstOperand}`;
     } else {
       if (calculator.secondOperand.includes('-')) {
         calculator.secondOperand = calculator.secondOperand.slice(1, calculator.secondOperand.length);
       } else {
         calculator.secondOperand = '-' + calculator.secondOperand;
       }
+      calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
     }
 
     calculator.lastButton === 'sign';
-
-    if (calculator.currentOperand === 'first') {
-      calculator.lastOperation = `${calculator.firstOperand}`;
-    } else {
-      calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
-    }
-
     calculator.currentScreen = '';
 
 }
@@ -239,11 +234,20 @@ function processSignButton() {
 function processDecimalButton() {
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand.includes('.')) return;
-    calculator.firstOperand += '.';
+    calculator.firstOperand = calculator.firstOperand + '.';
+    calculator.lastOperation = `${calculator.firstOperand}`;
   } else {
     if (calculator.secondOperand.includes('.')) return;
-    calculator.secondOperand += '.';
+    calculator.secondOperand = calculator.secondOperand + '.';
+    calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
   }
+
+  if (calculator.lastButton === 'percentage') return;
+  if (calculator.lastButton === 'one-over') return;
+  if (calculator.lastButton === 'radical') return;
+
+  calculator.lastButton = 'decimal';
+
 }
 
 function processPercentageButton() {
