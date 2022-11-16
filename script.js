@@ -72,6 +72,9 @@ function resetCalculatorState() {
 }
 
 
+
+
+
 function updateCurrentOperatingScreenUI(buttonType) {
 
   const currentOperatingScreen = document.querySelector('.current-operating-screen');
@@ -99,10 +102,18 @@ function updateCurrentOperatingScreenUI(buttonType) {
 }
 
 function updateCurrentScreenUI() {
-  if (!calculator.currentScreen) return;
   const currentScreen = document.querySelector('.current-screen');
   currentScreen.textContent = calculator.currentScreen;
 }
+
+
+
+
+
+
+
+
+
 
 
 function getOperatorSymbol(operator) {
