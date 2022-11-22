@@ -84,22 +84,36 @@ function updateCurrentOperatingScreenUI(buttonType) {
     return;
   }
 
+  let firstOperand;
+  let secondOperand;
+
+  firstOperand = calculator.firstOperand.includes('-') ? `(${calculator.firstOperand})` : calculator.firstOperand;
+
+  secondOperand = calculator.secondOperand.includes('-') ? `(${calculator.secondOperand})` : calculator.secondOperand;
+
+  //if first and second operand are defined
   if (calculator.secondOperand) {
-    currentOperatingScreen.textContent = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
+    currentOperatingScreen.textContent =`${firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${secondOperand}`;
     return;
   }
 
+  //if current operator is defined
   if (calculator.currentOperator) {
-    currentOperatingScreen.textContent = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)}`;
-    return;
+    currentOperatingScreen.textContent =`${firstOperand} ${getOperatorSymbol(calculator.currentOperator)}`;
+    return
   }
 
+  //if first operand is only defined
   if (calculator.firstOperand) {
-    currentOperatingScreen.textContent = `${calculator.firstOperand}`;
+    currentOperatingScreen.textContent =`${firstOperand}`;
     return;
   }
 
 }
+
+
+
+
 
 function updateCurrentScreenUI() {
   const currentScreen = document.querySelector('.current-screen');
