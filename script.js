@@ -80,7 +80,9 @@ function updateCurrentOperatingScreenUI(buttonType) {
   const currentOperatingScreen = document.querySelector('.current-operating-screen');
 
   if (buttonType === 'equal') {
-    currentOperatingScreen.textContent = calculator.lastOperation;
+    //parenthesize last operation
+    const lastOperation = parenthesizeLastOperation(calculator.lastOperation);
+    currentOperatingScreen.textContent = lastOperation;
     return;
   }
 
@@ -111,6 +113,21 @@ function updateCurrentOperatingScreenUI(buttonType) {
 
 }
 
+
+function parenthesizeLastOperation(lastOperation) {
+  console.log(lastOperation)
+  lastOperation = lastOperation.split(' ')
+                               .map(item => {
+                                  if (item.includes('-') && item.length > 1) {
+                                    item = `(${item})`
+                                  }
+                                  return item;
+                               })
+                               .join(' ');
+
+ return lastOperation;
+
+}
 
 
 
