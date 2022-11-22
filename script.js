@@ -18,8 +18,11 @@ const calculator = {
 function processButton(e) {
   const clickedButton = e.target;
   const buttonInfo = getButtonIdentity(clickedButton);
+
   if (!calculator.firstOperand) {
-    if (buttonInfo.type !== 'number') return;
+    if (buttonInfo.type !== 'number' && buttonInfo.type !== 'decimal' && buttonInfo.type !== 'sign')  {
+          return;
+    }
   }
 
   updateCalculatorState(buttonInfo);
