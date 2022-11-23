@@ -179,7 +179,6 @@ function evaluate(operator) {
 function processNumberButton(value) {
   if (calculator.lastButton === 'equal') {
     resetCalculatorState();
-    return;
   }
   if (calculator.lastButton === 'percentage' || calculator.lastButton === 'one-over' || calculator.lastButton === 'radical') {
     return;
@@ -242,7 +241,6 @@ function processEqualButton() {
 function processSignButton() {
     if (calculator.lastButton === 'equal') {
       resetCalculatorState();
-      return;
     }
     if (calculator.lastButton === 'percentage') return;
     if (calculator.lastButton === 'one-over') return;
@@ -274,7 +272,6 @@ function processSignButton() {
 function processDecimalButton() {
   if (calculator.lastButton === 'equal') {
     resetCalculatorState();
-    return;
   }
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand.includes('.')) return;
