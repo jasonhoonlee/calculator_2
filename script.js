@@ -239,6 +239,7 @@ function processSignButton() {
     if (calculator.lastButton === 'percentage') return;
     if (calculator.lastButton === 'one-over') return;
     if (calculator.lastButton === 'radical') return;
+    if (calculator.lastButton === 'equal') calculator.currentOperand = 'first';
 
     if (calculator.currentOperand === 'first') {
       if (calculator.firstOperand.includes('-')) {
