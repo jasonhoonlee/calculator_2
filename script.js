@@ -177,6 +177,10 @@ function evaluate(operator) {
 
 
 function processNumberButton(value) {
+  if (calculator.lastButton === 'equal') {
+    calculator.currentScreen = '';
+    return;
+  }
   if (calculator.lastButton === 'percentage' || calculator.lastButton === 'one-over' || calculator.lastButton === 'radical') {
     return;
   }
