@@ -323,6 +323,9 @@ function evaluateSpecialOperator(operator) {
 function processPercentageButton() {
 
   if (calculator.lastButton === 'operator') return;
+  if (calculator.lastButton === 'equal') {
+    calculator.currentOperand = 'first';
+   }
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand === '') return;
     evaluateSpecialOperator('percentage');
@@ -341,6 +344,9 @@ function processPercentageButton() {
 function processOneOverButton() {
 
   if (calculator.lastButton === 'operator') return;
+  if (calculator.lastButton === 'equal') {
+    calculator.currentOperand = 'first';
+   }
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand === '') return;
     evaluateSpecialOperator('one-over');
@@ -358,8 +364,6 @@ function processOneOverButton() {
 
 
 function processSquareRootButton() {
-  console.log('square root')
-  console.log(calculator)
 
    if (calculator.lastButton === 'operator') return;
    if (calculator.lastButton === 'equal') {
@@ -377,8 +381,6 @@ function processSquareRootButton() {
    }
    calculator.lastButton = 'radical';
    calculator.currentScreen = '';
-
-   console.log(calculator)
 
 }
 
