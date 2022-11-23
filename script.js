@@ -178,7 +178,7 @@ function evaluate(operator) {
 
 function processNumberButton(value) {
   if (calculator.lastButton === 'equal') {
-    calculator.currentScreen = '';
+    resetCalculatorState();
     return;
   }
   if (calculator.lastButton === 'percentage' || calculator.lastButton === 'one-over' || calculator.lastButton === 'radical') {
@@ -215,7 +215,10 @@ function processOperatorButton(operator) {
 }
 
 function processEqualButton() {
-  if (calculator.lastButton === 'equal') return;
+  if (calculator.lastButton === 'equal') {
+    resetCalculatorState();
+    return;
+  }
   if (calculator.lastButton === 'operator') return;
   if (!calculator.firstOperand || !calculator.secondOperand) return;
 
@@ -232,18 +235,19 @@ function processEqualButton() {
   //update current screen
   calculator.currentScreen = result;
 
-
-  console.log(calculator)
 }
 
 
 
 function processSignButton() {
-
+    if (calculator.lastButton === 'equal') {
+      resetCalculatorState();
+      return;
+    }
     if (calculator.lastButton === 'percentage') return;
     if (calculator.lastButton === 'one-over') return;
     if (calculator.lastButton === 'radical') return;
-    if (calculator.lastButton === 'equal') calculator.currentOperand = 'first';
+
 
     if (calculator.currentOperand === 'first') {
       if (calculator.firstOperand.includes('-')) {
@@ -268,6 +272,10 @@ function processSignButton() {
 
 
 function processDecimalButton() {
+  if (calculator.lastButton === 'equal') {
+    resetCalculatorState();
+    return;
+  }
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand.includes('.')) return;
     calculator.firstOperand = calculator.firstOperand + '.';
