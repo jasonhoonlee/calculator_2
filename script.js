@@ -190,8 +190,6 @@ function processNumberButton(value) {
   }
   calculator.lastButton = 'number';
   calculator.currentScreen = '';
-
-  console.log(calculator)
 }
 
 function processOperatorButton(operator) {
@@ -210,7 +208,6 @@ function processOperatorButton(operator) {
 
   calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)}`;
 
-  console.log(calculator)
 }
 
 function processEqualButton() {
@@ -333,7 +330,7 @@ function processPercentageButton() {
   } else {
     if (calculator.secondOperand === '') return;
     evaluateSpecialOperator('percentage');
-     calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
+     calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
   }
   calculator.lastButton = 'percentage';
   calculator.currentScreen = '';
@@ -352,18 +349,37 @@ function processOneOverButton() {
   if (calculator.currentOperand === 'second') {
     if (calculator.secondOperand === '') return;
     evaluateSpecialOperator('one-over');
-    calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
+    calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
   }
   calculator.lastButton = 'one-over';
   calculator.currentScreen = '';
 }
 
+
+
 function processSquareRootButton() {
-  if (calculator.currentOperand === 'first') {
-    calculator.firstOperand = Math.sqrt(calculator.firstOperand);
-  } else {
-    calculator.secondOperand = Math.sqrt(calculator.secondOperand);
-  }
+  console.log('square root')
+  console.log(calculator)
+
+   if (calculator.lastButton === 'operator') return;
+   if (calculator.lastButton === 'equal') {
+    calculator.currentOperand = 'first';
+   }
+   if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand === '') return;
+    evaluateSpecialOperator('radical');
+    calculator.lastOperation = `${calculator.firstOperand}`;
+   }
+   if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand === '') return;
+    evaluateSpecialOperator('radical');
+    calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
+   }
+   calculator.lastButton = 'radical';
+   calculator.currentScreen = '';
+
+   console.log(calculator)
+
 }
 
 
