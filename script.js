@@ -324,41 +324,38 @@ function evaluateSpecialOperator(operator) {
 }
 
 function processPercentageButton() {
-  //NOT after operator
+
   if (calculator.lastButton === 'operator') return;
-  //NOT if operand is ''
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand === '') return;
-    //evaluate percentage update operand
     evaluateSpecialOperator('percentage');
-    //update last operation
     calculator.lastOperation = `${calculator.firstOperand}`;
   } else {
     if (calculator.secondOperand === '') return;
-    //evaluate percentage update operand
     evaluateSpecialOperator('percentage');
-     //update last operation
      calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
   }
-
-  //update last button
   calculator.lastButton = 'percentage';
-  //clear CS
   calculator.currentScreen = '';
 }
 
 
 
-
-
-
-
 function processOneOverButton() {
+
+  if (calculator.lastButton === 'operator') return;
   if (calculator.currentOperand === 'first') {
-    calculator.firstOperand = 1/Number(calculator.firstOperand);
-  } else {
-    calculator.secondOperand = 1/Number(calculator.secondOperand);
+    if (calculator.firstOperand === '') return;
+    evaluateSpecialOperator('one-over');
+    calculator.lastOperation = `${calculator.firstOperand}`;
   }
+  if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand === '') return;
+    evaluateSpecialOperator('one-over');
+    calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
+  }
+  calculator.lastButton = 'one-over';
+  calculator.currentScreen = '';
 }
 
 function processSquareRootButton() {
