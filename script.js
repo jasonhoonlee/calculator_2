@@ -370,12 +370,15 @@ function processSquareRootButton() {
     calculator.currentOperand = 'first';
    }
    if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand.includes('-')) return;
     if (calculator.firstOperand === '') return;
     evaluateSpecialOperator('radical');
     calculator.lastOperation = `${calculator.firstOperand}`;
    }
    if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand.includes('-')) return;
     if (calculator.secondOperand === '') return;
+    console.log(calculator)
     evaluateSpecialOperator('radical');
     calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
    }
@@ -383,6 +386,11 @@ function processSquareRootButton() {
    calculator.currentScreen = '';
 
 }
+
+
+
+
+
 
 
 function processDeleteButton() {
@@ -393,9 +401,15 @@ function processDeleteButton() {
   }
 }
 
+
+
 function processClearButton() {
   resetCalculatorState();
 }
+
+
+
+
 
 
 function processEqualButton() {
