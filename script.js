@@ -284,13 +284,74 @@ function processDecimalButton() {
 
 }
 
-function processPercentageButton() {
-  if (calculator.currentOperand === 'first') {
-    calculator.firstOperand = Number(calculator.firstOperand)/100;
-  } else {
-    calculator.secondOperand = Number(calculator.secondOperand)/100;
+
+
+
+
+
+
+
+function evaluateSpecialOperator(operator) {
+  if (operator === 'radical') {
+    if (calculator.currentOperand === 'first') {
+      calculator.firstOperand = String(Math.sqrt(Number(calculator.firstOperand)));
+    }
+    if (calculator.currentOperand === 'second') {
+      calculator.secondOperand = String(Math.sqrt(Number(calculator.secondOperand)));
+    }
+    return;
+  }
+
+  if (operator === 'percentage') {
+    if (calculator.currentOperand === 'first') {
+      calculator.firstOperand = String(Number(calculator.firstOperand)/100);
+    }
+    if (calculator.currentOperand === 'second') {
+      calculator.secondOperand = String(Number(calculator.secondOperand)/100);
+    }
+    return;
+  }
+
+  if (operator === 'one-over') {
+    if (calculator.currentOperand === 'first') {
+      calculator.firstOperand = String(1/Number(calculator.firstOperand));
+    }
+    if (calculator.currentOperand === 'second') {
+      calculator.secondOperand = String(1/Number(calculator.secondOperand));
+    }
+    return;
   }
 }
+
+function processPercentageButton() {
+  //NOT after operator
+  if (calculator.lastButton === 'operator') return;
+  //NOT if operand is ''
+  if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand === '') return;
+    //evaluate percentage update operand
+    evaluateSpecialOperator('percentage');
+    //update last operation
+    calculator.lastOperation = `${calculator.firstOperand}`;
+  } else {
+    if (calculator.secondOperand === '') return;
+    //evaluate percentage update operand
+    evaluateSpecialOperator('percentage');
+     //update last operation
+     calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand}`;
+  }
+
+  //update last button
+  calculator.lastButton = 'percentage';
+  //clear CS
+  calculator.currentScreen = '';
+}
+
+
+
+
+
+
 
 function processOneOverButton() {
   if (calculator.currentOperand === 'first') {
