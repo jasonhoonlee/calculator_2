@@ -85,12 +85,17 @@ function updateCurrentOperatingScreenUI(buttonType) {
   if (buttonType === 'equal') {
     //parenthesize last operation
     const lastOperation = parenthesizeLastOperation(calculator.lastOperation);
-    currentOperatingScreen.textContent = lastOperation;
+    currentOperatingScreen.textContent = `${lastOperation} =`;
     return;
   }
 
   if (buttonType === 'clear') {
     currentOperatingScreen.textContent = '';
+    return;
+  }
+
+  if (buttonType === 'delete') {
+    currentOperatingScreen.textContent = calculator.currentOperatingScreen;
   }
 
   let firstOperand;
@@ -395,10 +400,19 @@ function processSquareRootButton() {
 
 function processDeleteButton() {
   if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand.length === 1) {
+      calculator.firstOperand = '';
+      return;
+    }
     calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
   } else {
+    if (calculator.secondOperand.length === 1) {
+        calculator.secondOperand = '';
+        return;
+    }
     calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
   }
+  calculator.lastButton = 'delete';
 }
 
 
