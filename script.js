@@ -89,6 +89,10 @@ function updateCurrentOperatingScreenUI(buttonType) {
     return;
   }
 
+  if (buttonType === 'clear') {
+    currentOperatingScreen.textContent = '';
+  }
+
   let firstOperand;
   let secondOperand;
 
@@ -139,14 +143,6 @@ function updateCurrentScreenUI() {
   const currentScreen = document.querySelector('.current-screen');
   currentScreen.textContent = calculator.currentScreen;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -290,11 +286,6 @@ function processDecimalButton() {
   calculator.lastButton = 'decimal';
 
 }
-
-
-
-
-
 
 
 
