@@ -197,7 +197,7 @@ function processNumberButton(value) {
 
 function processOperatorButton(operator) {
   if (calculator.lastButton === 'operator') return;
-  if (!calculator.firstOperand) return;
+  if (calculator.firstOperand === '' || calculator.firstOperand === '-' || calculator.firstOperand === '.' || calculator.firstOperand === '-.') return;
 
   if (calculator.firstOperand && calculator.secondOperand) {
     calculator.firstOperand = String(evaluate(calculator.currentOperator));
@@ -337,11 +337,11 @@ function processPercentageButton() {
     calculator.currentOperand = 'first';
    }
   if (calculator.currentOperand === 'first') {
-    if (calculator.firstOperand === ''|| calculator.firstOperand === '-' || calculator.firstOperand === '.') return;
+    if (calculator.firstOperand === ''|| calculator.firstOperand === '-' || calculator.firstOperand === '.' || calculator.firstOperand === '-.') return;
     evaluateSpecialOperator('percentage');
     calculator.lastOperation = `${calculator.firstOperand}`;
   } else {
-    if (calculator.secondOperand === '' || calculator.secondOperand === '-' || calculator.secondOperand === '.') return;
+    if (calculator.secondOperand === '' || calculator.secondOperand === '-' || calculator.secondOperand === '.' || calculator.secondOperand === '-.') return;
     evaluateSpecialOperator('percentage');
      calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
   }
@@ -358,12 +358,12 @@ function processOneOverButton() {
     calculator.currentOperand = 'first';
    }
   if (calculator.currentOperand === 'first') {
-    if (calculator.firstOperand === '') return;
+    if (calculator.firstOperand === '' || calculator.firstOperand === '-' || calculator.firstOperand === '.' || calculator.firstOperand === '-.') return;
     evaluateSpecialOperator('one-over');
     calculator.lastOperation = `${calculator.firstOperand}`;
   }
   if (calculator.currentOperand === 'second') {
-    if (calculator.secondOperand === '') return;
+    if (calculator.secondOperand === '' || calculator.secondOperand === '-' || calculator.secondOperand === '.' || calculator.secondOperand === '-.') return;
     evaluateSpecialOperator('one-over');
     calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
   }
@@ -381,14 +381,13 @@ function processSquareRootButton() {
    }
    if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand.includes('-')) return;
-    if (calculator.firstOperand === '') return;
+    if (calculator.firstOperand === '' || calculator.firstOperand === '-' || calculator.firstOperand === '.' || calculator.firstOperand === '-.') return;
     evaluateSpecialOperator('radical');
     calculator.lastOperation = `${calculator.firstOperand}`;
    }
    if (calculator.currentOperand === 'second') {
     if (calculator.secondOperand.includes('-')) return;
-    if (calculator.secondOperand === '') return;
-    console.log(calculator)
+    if (calculator.secondOperand === '' || calculator.secondOperand === '-' || calculator.secondOperand === '.' || calculator.secondOperand === '-.') return;
     evaluateSpecialOperator('radical');
     calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
    }
