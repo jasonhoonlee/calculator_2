@@ -337,11 +337,11 @@ function processPercentageButton() {
     calculator.currentOperand = 'first';
    }
   if (calculator.currentOperand === 'first') {
-    if (calculator.firstOperand === '') return;
+    if (calculator.firstOperand === ''|| calculator.firstOperand === '-' || calculator.firstOperand === '.') return;
     evaluateSpecialOperator('percentage');
     calculator.lastOperation = `${calculator.firstOperand}`;
   } else {
-    if (calculator.secondOperand === '') return;
+    if (calculator.secondOperand === '' || calculator.secondOperand === '-' || calculator.secondOperand === '.') return;
     evaluateSpecialOperator('percentage');
      calculator.lastOperation = `${calculator.firstOperand} ${getOperatorSymbol(calculator.currentOperator)} ${calculator.secondOperand}`;
   }
