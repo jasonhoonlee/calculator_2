@@ -24,6 +24,7 @@ function processButton(e) {
   if (!calculator.currentOperand && buttonType !== 'number') return;
   if (buttonType === 'number') processNumberButton(e);
   if (buttonType === 'decimal') processDecimalButton();
+
 }
 
 function processNumberButton(e) {
@@ -70,7 +71,9 @@ function processDecimalButton() {
   if (calculator.currentOperand === 'second') {
     if (calculator.secondOperand.includes('.')) return;
   }
-  updateOperandsWithDecimal()
+  updateOperandsWithDecimal();
+  updateLastOperation();
+  calculator.lastButton = 'decimal';
 }
 
 function updateOperandsWithDecimal() {
@@ -84,3 +87,4 @@ function updateOperandsWithDecimal() {
     return;
   }
 }
+
