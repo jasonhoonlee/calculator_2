@@ -24,3 +24,40 @@ function processButton(e) {
   if (!calculator.currentOperand && buttonType !== 'number') return;
   if (buttonType === 'number') processNumberButton(e);
 }
+
+function processNumberButton(e) {
+  const number = e.target.textContent;
+  updateOperands(number);
+  updateLastOperation();
+  calculator.lastButton = 'number';
+  calculator.currentScreen = '';
+}
+
+function updateOperands(number) {
+  if (!calculator.currentOperand) calculator.currentOperand = 'first';
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand += number;
+    return;
+  }
+  if (calculator.currentOperand === 'second') {
+    calculator.secondOperand += number;
+    return;
+  }
+}
+
+function updateLastOperation() {
+  if (calculator.secondOperand) {
+    calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand} =`;
+    return;
+  }
+
+  if (calculator.currentOperator) {
+    calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator}`;
+    return;
+  }
+
+  if (calculator.firstOperand) {
+    calculator.lastOperation = `${calculator.firstOperand}`;
+    return;
+  }
+}
