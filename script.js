@@ -11,11 +11,16 @@
 
 const calculator = {
   currentOperator: null,
-  currentOperand: 'first',
+  currentOperand: null,
   firstOperand: '',
   secondOperand: '',
   lastButton: null,
-  lastOperation: '',
-  currentScreen: '',
+  lastOperation: null,
+  currentScreen: null,
 }
 
+function processButton(e) {
+  const buttonType = e.target.classList[1];
+  if (!calculator.currentOperand && buttonType !== 'number') return;
+  if (buttonType === 'number') processNumberButton(e);
+}
