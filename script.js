@@ -24,7 +24,7 @@ function processButton(e) {
   if (!calculator.currentOperand && buttonType !== 'number') return;
   if (buttonType === 'number') processNumberButton(e);
   if (buttonType === 'decimal') processDecimalButton();
-
+  if (buttonType === 'sign') processSignButton();
 }
 
 function processNumberButton(e) {
@@ -85,6 +85,29 @@ function updateOperandsWithDecimal() {
   if (calculator.currentOperand === 'second') {
     calculator.secondOperand += '.';
     return;
+  }
+}
+
+function processSignButton() {
+  updateOperandWithSign();
+  updateLastOperation();
+  calculator.lastButton = 'sign';
+}
+
+
+function updateOperandWithSign() {
+  if (calculator.currentOperand === 'first') {
+    if (!calculator.firstOperand.includes('-')) {
+      calculator.firstOperand = `-${calculator.firstOperand}`;
+    } else {
+      calculator.firstOperand = calculator.firstOperand.slice(1, calculator.firstOperand.length);
+    }
+  } else {
+    if (!calculator.secondOperand.includes('-')) {
+      calculator.secondOperand = `-${calculator.secondOperand}`;
+    } else {
+      calculator.secondOperand = calculator.secondOperand.slice(1, calculator.secondOperand.length);
+    }
   }
 }
 
