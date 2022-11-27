@@ -23,6 +23,7 @@ function processButton(e) {
   const buttonType = e.target.classList[1];
   if (!calculator.currentOperand && buttonType !== 'number') return;
   if (buttonType === 'number') processNumberButton(e);
+  if (buttonType === 'decimal') processDecimalButton();
 }
 
 function processNumberButton(e) {
@@ -58,6 +59,28 @@ function updateLastOperation() {
 
   if (calculator.firstOperand) {
     calculator.lastOperation = `${calculator.firstOperand}`;
+    return;
+  }
+}
+
+function processDecimalButton() {
+  if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand.includes('.')) return;
+  }
+  if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand.includes('.')) return;
+  }
+  updateOperandsWithDecimal()
+}
+
+function updateOperandsWithDecimal() {
+  if (!calculator.currentOperand) calculator.currentOperand = 'first';
+  if (calculator.currentOperand === 'first') {
+    calculator.firstOperand += '.';
+    return;
+  }
+  if (calculator.currentOperand === 'second') {
+    calculator.secondOperand += '.';
     return;
   }
 }
