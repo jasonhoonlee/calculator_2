@@ -48,18 +48,22 @@ function updateOperands(number) {
 }
 
 function updateLastOperation() {
+
+  const firstOperand = calculator.firstOperand.includes('-') ? `(${calculator.firstOperand})` : calculator.firstOperand;
+  const secondOperand = calculator.secondOperand.includes('-') ? `(${calculator.secondOperand})`: calculator.secondOperand;
+
   if (calculator.secondOperand) {
-    calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator} ${calculator.secondOperand} =`;
+    calculator.lastOperation = `${firstOperand} ${calculator.currentOperator} ${secondOperand} =`;
     return;
   }
 
   if (calculator.currentOperator) {
-    calculator.lastOperation = `${calculator.firstOperand} ${calculator.currentOperator}`;
+    calculator.lastOperation = `${firstOperand} ${calculator.currentOperator}`;
     return;
   }
 
   if (calculator.firstOperand) {
-    calculator.lastOperation = `${calculator.firstOperand}`;
+    calculator.lastOperation = `${firstOperand}`;
     return;
   }
 }
