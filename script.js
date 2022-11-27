@@ -9,3 +9,13 @@
 
 })();
 
+const calculator = {
+  currentOperator: null,
+  currentOperand: 'first',
+  firstOperand: '',
+  secondOperand: '',
+  lastButton: null,
+  lastOperation: '',
+  currentScreen: '',
+}
+
