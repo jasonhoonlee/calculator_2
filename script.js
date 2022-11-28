@@ -25,6 +25,7 @@ function processButton(e) {
   if (buttonType === 'number') processNumberButton(e);
   if (buttonType === 'decimal') processDecimalButton();
   if (buttonType === 'sign') processSignButton();
+  if (buttonType === 'delete') processDeleteButton();
 }
 
 function processNumberButton(e) {
@@ -115,3 +116,39 @@ function updateOperandWithSign() {
   }
 }
 
+
+function processDeleteButton() {
+  if (calculator.lastButton === 'equal') {
+    resetCalculatorState();
+    return;
+  }
+  updateOperandWithDelete();
+  updateLastOperation();
+  calculator.lastButton = 'delete';
+  calculator.currentScreen = '';
+}
+
+function resetCalculatorState() {
+  calculator.currentOperator = null;
+  calculator.currentOperand = null;
+  calculator.firstOperand = '';
+  calculator.secondOperand = '';
+  calculator.lastButton = null;
+  calculator.lastOperation = null;
+  calculator.currentScreen = null;
+}
+
+function updateOperandWithDelete() {
+  if (calculator.secondOperand) {
+    calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
+    return;
+  }
+  if (calculator.currentOperator) {
+    calculator.currentOperator = '';
+    return;
+  }
+  if (calculator.firstOperand) {
+    calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
+    return;
+  }
+}
