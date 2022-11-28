@@ -125,7 +125,7 @@ function processDeleteButton() {
   updateOperandWithDelete();
   updateLastOperation();
   calculator.lastButton = 'delete';
-  calculator.currentScreen = '';
+  calculator.currentScreen = null;
 }
 
 function resetCalculatorState() {
@@ -144,11 +144,12 @@ function updateOperandWithDelete() {
     return;
   }
   if (calculator.currentOperator) {
-    calculator.currentOperator = '';
+    calculator.currentOperator = null;
     return;
   }
   if (calculator.firstOperand) {
     calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
+    calculator.currentOperand = 'first';
     return;
   }
 }
