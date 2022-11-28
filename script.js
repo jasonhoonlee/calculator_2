@@ -79,6 +79,7 @@ function processDecimalButton() {
   updateOperandsWithDecimal();
   updateLastOperation();
   calculator.lastButton = 'decimal';
+  calculator.currentScreen = '';
 }
 
 function updateOperandsWithDecimal() {
@@ -97,6 +98,7 @@ function processSignButton() {
   updateOperandWithSign();
   updateLastOperation();
   calculator.lastButton = 'sign';
+  calculator.currentScreen = '';
 }
 
 
@@ -125,7 +127,7 @@ function processDeleteButton() {
   updateOperandWithDelete();
   updateLastOperation();
   calculator.lastButton = 'delete';
-  calculator.currentScreen = null;
+  calculator.currentScreen = '';
 }
 
 function resetCalculatorState() {
@@ -135,7 +137,7 @@ function resetCalculatorState() {
   calculator.secondOperand = '';
   calculator.lastButton = null;
   calculator.lastOperation = null;
-  calculator.currentScreen = null;
+  calculator.currentScreen = '';
 }
 
 function updateOperandWithDelete() {
