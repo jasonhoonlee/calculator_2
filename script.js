@@ -26,6 +26,7 @@ function processButton(e) {
   if (buttonType === 'decimal') processDecimalButton();
   if (buttonType === 'sign') processSignButton();
   if (buttonType === 'delete') processDeleteButton();
+  if (buttonType === 'clear') processClearButton();
 }
 
 function processNumberButton(e) {
@@ -154,4 +155,8 @@ function updateOperandWithDelete() {
     calculator.currentOperand = 'first';
     return;
   }
+}
+
+function processClearButton() {
+  resetCalculatorState();
 }
