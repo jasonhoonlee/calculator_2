@@ -53,14 +53,15 @@ function updateLastOperation() {
 
   const firstOperand = calculator.firstOperand.includes('-') ? `(${calculator.firstOperand})` : calculator.firstOperand;
   const secondOperand = calculator.secondOperand.includes('-') ? `(${calculator.secondOperand})`: calculator.secondOperand;
+  const currentOperator = calculator.currentOperator;
 
   if (calculator.secondOperand) {
-    calculator.lastOperation = `${firstOperand} ${calculator.currentOperator} ${secondOperand} =`;
+    calculator.lastOperation = `${firstOperand} ${getOperatorSymbol(currentOperator)} ${secondOperand} =`;
     return;
   }
 
-  if (calculator.currentOperator) {
-    calculator.lastOperation = `${firstOperand} ${calculator.currentOperator}`;
+  if (currentOperator) {
+    calculator.lastOperation = `${firstOperand} ${getOperatorSymbol(currentOperator)}`;
     return;
   }
 
@@ -159,4 +160,13 @@ function updateOperandWithDelete() {
 
 function processClearButton() {
   resetCalculatorState();
+}
+
+
+function getOperatorSymbol() {
+  const operator = calculator.currentOperator;
+  if (operator === 'multiplication') return '*';
+  if (operator === 'division') return '÷';
+  if (operator === 'addition') return '+';
+  if (operator === 'subtraction') return '-';
 }
