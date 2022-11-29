@@ -28,6 +28,7 @@ function processButton(e) {
   if (buttonType === 'delete') processDeleteButton();
   if (buttonType === 'clear') processClearButton();
   if (buttonType === 'addition') processAddButton();
+  if (buttonType === 'subtraction') processSubtractButton();
 }
 
 function processNumberButton(e) {
@@ -195,5 +196,17 @@ function evaluate() {
   if (currentOperator === 'subtraction') return Number(firstOperand) - Number(secondOperand);
   if (currentOperator === 'multiplication') return Number(firstOperand) * Number(secondOperand);
   if (currentOperator === 'division') return Number(firstOperand) / Number(secondOperand);
+}
+
+function processSubtractButton() {
+  if (calculator.firstOperand && calculator.secondOperand) {
+    calculator.firstOperand = String(evaluate());
+    calculator.secondOperand = '';
+  }
+  calculator.currentOperator = 'subtraction';
+  calculator.lastButton = 'subtraction';
+  calculator.currentOperand = 'second';
+  calculator.clearScreen = '';
+  updateLastOperation();
 }
 
