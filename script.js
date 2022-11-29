@@ -27,6 +27,7 @@ function processButton(e) {
   if (buttonType === 'sign') processSignButton();
   if (buttonType === 'delete') processDeleteButton();
   if (buttonType === 'clear') processClearButton();
+  if (buttonType === 'addition') processAddButton();
 }
 
 function processNumberButton(e) {
@@ -170,3 +171,29 @@ function getOperatorSymbol() {
   if (operator === 'addition') return '+';
   if (operator === 'subtraction') return '-';
 }
+
+
+function processAddButton() {
+  if (calculator.firstOperand && calculator.secondOperand) {
+    calculator.firstOperand = String(evaluate());
+    calculator.secondOperand = '';
+  }
+  calculator.currentOperator = 'addition';
+  calculator.lastButton = 'addition';
+  calculator.currentOperand = 'second';
+  calculator.clearScreen = '';
+  updateLastOperation();
+}
+
+
+function evaluate() {
+  const currentOperator = calculator.currentOperator;
+  const firstOperand = calculator.firstOperand;
+  const secondOperand = calculator.secondOperand;
+
+  if (currentOperator === 'addition') return Number(firstOperand) + Number(secondOperand);
+  if (currentOperator === 'subtraction') return Number(firstOperand) - Number(secondOperand);
+  if (currentOperator === 'multiplication') return Number(firstOperand) * Number(secondOperand);
+  if (currentOperator === 'division') return Number(firstOperand) / Number(secondOperand);
+}
+
