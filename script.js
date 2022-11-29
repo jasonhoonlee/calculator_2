@@ -29,6 +29,7 @@ function processButton(e) {
   if (buttonType === 'clear') processClearButton();
   if (buttonType === 'addition') processAddButton();
   if (buttonType === 'subtraction') processSubtractButton();
+  if (buttonType === 'division') processDivideButton();
 }
 
 function processNumberButton(e) {
@@ -210,3 +211,14 @@ function processSubtractButton() {
   updateLastOperation();
 }
 
+function processDivideButton() {
+  if (calculator.firstOperand && calculator.secondOperand) {
+    calculator.firstOperand = String(evaluate());
+    calculator.secondOperand = '';
+  }
+  calculator.currentOperator = 'division';
+  calculator.lastButton = 'division';
+  calculator.currentOperand = 'second';
+  calculator.clearScreen = '';
+  updateLastOperation();
+}
