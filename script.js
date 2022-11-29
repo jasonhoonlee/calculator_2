@@ -21,7 +21,11 @@ const calculator = {
 
 function processButton(e) {
   const buttonType = e.target.classList[1];
-  if (!calculator.currentOperand && buttonType !== 'number') return;
+  if (!calculator.currentOperand && (buttonType !== 'number' &&
+                                     buttonType !== 'decimal' &&
+                                     buttonType !== 'sign')) {
+    return;
+  }
   if (buttonType === 'number') processNumberButton(e);
   if (buttonType === 'decimal') processDecimalButton();
   if (buttonType === 'sign') processSignButton();
@@ -177,6 +181,13 @@ function getOperatorSymbol() {
 
 
 function processAddButton() {
+  //check if current operand is a number value
+  let currentOperandValue;
+  if (calculator.currentOperand === 'first') currentOperandValue = calculator.firstOperand;
+  if (calculator.currentOperand === 'second') currentOperandValue = calculator.secondOperand;
+
+  if (!isNumberValue(currentOperandValue)) return;
+
   if (calculator.firstOperand && calculator.secondOperand) {
     calculator.firstOperand = String(evaluate());
     calculator.secondOperand = '';
@@ -186,6 +197,12 @@ function processAddButton() {
   calculator.currentOperand = 'second';
   calculator.clearScreen = '';
   updateLastOperation();
+}
+
+function isNumberValue(value) {
+   let digits = value.split('');
+  const isNumber = digits.some(digit => typeof(digit) === 'number');
+  return isNumber;
 }
 
 
