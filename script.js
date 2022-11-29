@@ -233,6 +233,11 @@ function processSubtractButton() {
 }
 
 function processDivideButton() {
+  let currentOperandValue;
+  if (calculator.currentOperand === 'first') currentOperandValue = calculator.firstOperand;
+  if (calculator.currentOperand === 'second') currentOperandValue = calculator.secondOperand;
+  if (!isNumberValue(currentOperandValue)) return;
+
   if (calculator.firstOperand && calculator.secondOperand) {
     calculator.firstOperand = String(evaluate());
     calculator.secondOperand = '';
