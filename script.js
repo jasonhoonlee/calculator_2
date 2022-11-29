@@ -35,6 +35,7 @@ function processButton(e) {
   if (buttonType === 'subtraction') processSubtractButton();
   if (buttonType === 'division') processDivideButton();
   if (buttonType === 'multiplication') processMultiplicationButton();
+  if (buttonType === 'equal') processEqualButton();
 }
 
 function processNumberButton(e) {
@@ -198,8 +199,8 @@ function processAddButton() {
 }
 
 function isNumberValue(value) {
-   let digits = value.split('');
-  const isNumber = digits.some(digit => typeof(digit) === 'number');
+  let digits = value.split('');
+  const isNumber = digits.some(digit => Number(digit));
   return isNumber;
 }
 
@@ -265,3 +266,30 @@ function processMultiplicationButton() {
   calculator.clearScreen = '';
   updateLastOperation();
 }
+
+
+
+// function processEqualButton() {
+//   const firstOperand = calculator.firstOperand;
+//   const secondOperand = calculator.secondOperand;
+//   if (!firstOperand && !secondOperand) return;
+
+//   //update last operation
+//   updateLastOperation();
+//   //evaluate
+//   const result = evaluate();
+//   //update operands
+//   calculator.firstOperand = String(result);
+//   //update current operand
+//   calculator.secondOperand = '';
+//   //update current operand
+//   calculator.currentOperand = 'second';
+//   //update current operator
+//   calculator.currentOperator = null;
+//   //update last button
+//   calculator.lastButton = 'equal';
+//   //clear screen
+//   calculator.clearScreen = '';
+//   console.log(calculator)
+
+// }
