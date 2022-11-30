@@ -38,6 +38,7 @@ function processButton(e) {
   if (buttonType === 'equal') processEqualButton();
 
   updateCurrentOperationScreenUI();
+  updateCurrentScreenUI();
 }
 
 function processNumberButton(e) {
@@ -324,3 +325,12 @@ function updateCurrentOperationScreenUI() {
 
 }
 
+
+function updateCurrentScreenUI() {
+  const currentScreen = document.querySelector('.current-screen');
+  if (calculator.lastButton === 'equal') {
+    currentScreen.textContent = calculator.firstOperand;
+  } else {
+    currentScreen.textContent = '';
+  }
+}
