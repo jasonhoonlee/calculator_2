@@ -39,6 +39,7 @@ function processButton(e) {
 }
 
 function processNumberButton(e) {
+  if (calculator.lastButton === 'equal') return;
   const number = e.target.textContent;
   updateOperands(number);
   updateLastOperation();
