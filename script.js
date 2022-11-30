@@ -36,6 +36,8 @@ function processButton(e) {
   if (buttonType === 'division') processDivideButton();
   if (buttonType === 'multiplication') processMultiplicationButton();
   if (buttonType === 'equal') processEqualButton();
+
+  updateCurrentOperationScreenUI();
 }
 
 function processNumberButton(e) {
@@ -288,5 +290,33 @@ function processEqualButton() {
   calculator.currentOperator = null;
   calculator.lastButton = 'equal';
   calculator.clearScreen = '';
+}
+
+function updateCurrentOperationScreenUI() {
+  const currentOperatingScreen = document.querySelector('.current-operating-screen');
+  if (calculator.lastButton === 'equal') {
+    currentOperatingScreen.textContent = calculator.lastOperation;
+    return;
+  }
+
+  const firstOperand = calculator.firstOperand;
+  const secondOperand = calculator.secondOperand;
+  const currentOperator = calculator.currentOperator;
+
+  if (secondOperand) {
+    currentOperatingScreen.textContent = `${firstOperand} ${getOperatorSymbol(currentOperator)} ${secondOperand}`;
+    return;
+  }
+
+  if (currentOperator) {
+    currentOperatingScreen.textContent = `${firstOperand} ${getOperatorSymbol(currentOperator)}`;
+    return;
+  }
+
+  if (firstOperand) {
+    currentOperatingScreen.textContent = `${firstOperand}`;
+    return;
+  }
 
 }
+
