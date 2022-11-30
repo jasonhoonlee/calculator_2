@@ -107,6 +107,7 @@ function updateOperandsWithDecimal() {
 }
 
 function processSignButton() {
+  if (calculator.lastButton === 'equal') return;
   updateOperandWithSign();
   updateLastOperation();
   calculator.lastButton = 'sign';
