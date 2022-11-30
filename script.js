@@ -272,27 +272,18 @@ function processMultiplicationButton() {
 
 
 
-// function processEqualButton() {
-//   const firstOperand = calculator.firstOperand;
-//   const secondOperand = calculator.secondOperand;
-//   if (!firstOperand && !secondOperand) return;
+function processEqualButton() {
+  const firstOperand = calculator.firstOperand;
+  const secondOperand = calculator.secondOperand;
+  if (!firstOperand && !secondOperand) return;
 
-//   //update last operation
-//   updateLastOperation();
-//   //evaluate
-//   const result = evaluate();
-//   //update operands
-//   calculator.firstOperand = String(result);
-//   //update current operand
-//   calculator.secondOperand = '';
-//   //update current operand
-//   calculator.currentOperand = 'second';
-//   //update current operator
-//   calculator.currentOperator = null;
-//   //update last button
-//   calculator.lastButton = 'equal';
-//   //clear screen
-//   calculator.clearScreen = '';
-//   console.log(calculator)
+  updateLastOperation();
+  const result = evaluate();
+  calculator.firstOperand = String(result);
+  calculator.secondOperand = '';
+  calculator.currentOperand = 'first';
+  calculator.currentOperator = null;
+  calculator.lastButton = 'equal';
+  calculator.clearScreen = '';
 
-// }
+}
