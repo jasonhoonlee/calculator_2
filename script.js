@@ -81,6 +81,7 @@ function updateLastOperation() {
 }
 
 function processDecimalButton() {
+  if (calculator.lastButton === 'equal') return;
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand.includes('.')) return;
   }
