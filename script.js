@@ -114,17 +114,20 @@ function processSignButton() {
 
 
 function updateOperandWithSign() {
+  if (!calculator.currentOperand) calculator.currentOperand = 'first';
   if (calculator.currentOperand === 'first') {
     if (!calculator.firstOperand.includes('-')) {
-      calculator.firstOperand = `-${calculator.firstOperand}`;
+        if (calculator.firstOperand === '') calculator.firstOperand = '-';
+        else calculator.firstOperand = `-${calculator.firstOperand}`;
     } else {
-      calculator.firstOperand = calculator.firstOperand.slice(1, calculator.firstOperand.length);
+       calculator.firstOperand = calculator.firstOperand.slice(1, calculator.firstOperand.length);
     }
   } else {
     if (!calculator.secondOperand.includes('-')) {
-      calculator.secondOperand = `-${calculator.secondOperand}`;
+        if (calculator.secondOperand === '') calculator.secondOperand = '-';
+        else calculator.secondOperand = `-${calculator.secondOperand}`;
     } else {
-      calculator.secondOperand = calculator.secondOperand.slice(1, calculator.secondOperand.length);
+        calculator.secondOperand = calculator.secondOperand.slice(1, calculator.secondOperand.length);
     }
   }
 }
