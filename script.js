@@ -37,6 +37,7 @@ function processButton(e) {
   if (buttonType === 'multiplication') processMultiplicationButton();
   if (buttonType === 'equal') processEqualButton();
   if (buttonType === 'one-over') processOneOverButton();
+  if (buttonType === 'percentage') processPercentageButton();
 
   updateCurrentOperationScreenUI();
   updateCurrentScreenUI();
@@ -351,16 +352,17 @@ function updateCurrentScreenUI() {
 function processOneOverButton() {
   if (calculator.currentOperand === 'first') {
     if (isNumberValue(calculator.firstOperand)) {
-      calculator.firstOperand = String(Number(calculator.firstOperand)/100);
+      calculator.firstOperand = String(1/Number(calculator.firstOperand));
     }
   }
 
   if (calculator.currentOperand === 'second') {
     if (isNumberValue(calculator.secondOperand)) {
-      calculator.secondOperand = String(Number(calculator.secondOperand)/100);
+      calculator.secondOperand = String(1/Number(calculator.secondOperand));
     }
   }
   calculator.lastButton = 'one-over';
   calculator.currentScreen = '';
   updateLastOperation();
 }
+
