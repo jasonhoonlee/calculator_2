@@ -45,7 +45,6 @@ function processNumberButton(e) {
   if (calculator.lastButton === 'equal') {
     resetCalculatorState();
     calculator.currentOperand = 'first';
-    return;
   }
   const number = e.target.textContent;
   updateOperands(number);
