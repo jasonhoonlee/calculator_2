@@ -38,6 +38,7 @@ function processButton(e) {
   if (buttonType === 'equal') processEqualButton();
   if (buttonType === 'one-over') processOneOverButton();
   if (buttonType === 'percentage') processPercentageButton();
+  if (buttonType === 'radical') processRadicalButton();
 
   updateCurrentOperationScreenUI();
   updateCurrentScreenUI();
@@ -384,3 +385,23 @@ function processPercentageButton() {
   updateLastOperation();
 }
 
+
+function processRadicalButton() {
+  if (calculator.currentOperand === 'first') {
+    if (isNumberValue(calculator.firstOperand)) {
+      calculator.firstOperand = String(Math.sqrt(Number(calculator.firstOperand)));
+    }
+    if (isNaN(calculator.firstOperand)) calculator.firstOperand = 'ERROR';
+  }
+
+  if (calculator.currentOperand === 'second') {
+    if (isNumberValue(calculator.secondOperand)) {
+      calculator.secondOperand = String(Math.sqrt(Number(calculator.secondOperand)));
+    }
+    if (isNaN(calculator.secondOperand)) calculator.secondOperand = 'ERROR';
+  }
+
+  calculator.lastButton = 'radical';
+  calculator.currentScreen = '';
+  updateLastOperation();
+}
