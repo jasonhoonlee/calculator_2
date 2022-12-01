@@ -36,6 +36,7 @@ function processButton(e) {
   if (buttonType === 'division') processDivideButton();
   if (buttonType === 'multiplication') processMultiplicationButton();
   if (buttonType === 'equal') processEqualButton();
+  if (buttonType === 'one-over') processOneOverButton();
 
   updateCurrentOperationScreenUI();
   updateCurrentScreenUI();
@@ -345,4 +346,21 @@ function updateCurrentScreenUI() {
   } else {
     currentScreen.textContent = '';
   }
+}
+
+function processOneOverButton() {
+  if (calculator.currentOperand === 'first') {
+    if (isNumberValue(calculator.firstOperand)) {
+      calculator.firstOperand = String(Number(calculator.firstOperand)/100);
+    }
+  }
+
+  if (calculator.currentOperand === 'second') {
+    if (isNumberValue(calculator.secondOperand)) {
+      calculator.secondOperand = String(Number(calculator.secondOperand)/100);
+    }
+  }
+  calculator.lastButton = 'one-over';
+  calculator.currentScreen = '';
+  updateLastOperation();
 }
