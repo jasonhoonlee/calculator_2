@@ -234,6 +234,8 @@ function evaluate() {
   const firstOperand = calculator.firstOperand;
   const secondOperand = calculator.secondOperand;
 
+  if (firstOperand === 'ERROR' || secondOperand === 'ERROR') return 'ERROR';
+
   if (currentOperator === 'addition') return Number(firstOperand) + Number(secondOperand);
   if (currentOperator === 'subtraction') return Number(firstOperand) - Number(secondOperand);
   if (currentOperator === 'multiplication') return Number(firstOperand) * Number(secondOperand);
@@ -299,8 +301,7 @@ function processEqualButton() {
   if (!(firstOperand && secondOperand)) return;
 
   updateLastOperation();
-  const result = evaluate();
-  calculator.firstOperand = String(result);
+  calculator.firstOperand = String(evaluate());
   calculator.secondOperand = '';
   calculator.currentOperand = 'first';
   calculator.currentOperator = null;
