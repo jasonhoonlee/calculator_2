@@ -151,7 +151,6 @@ function updateOperandWithSign() {
 function processDeleteButton() {
   if (calculator.lastButton === 'equal') {
     resetCalculatorState();
-    return;
   }
   updateOperandWithDelete();
   updateLastOperation();
@@ -161,7 +160,7 @@ function processDeleteButton() {
 
 function resetCalculatorState() {
   calculator.currentOperator = null;
-  calculator.currentOperand = null;
+  calculator.currentOperand = 'first';
   calculator.firstOperand = '';
   calculator.secondOperand = '';
   calculator.lastButton = null;
@@ -170,19 +169,23 @@ function resetCalculatorState() {
 }
 
 function updateOperandWithDelete() {
-  if (calculator.secondOperand) {
-    calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
-    return;
-  }
-  if (calculator.currentOperator) {
-    calculator.currentOperator = null;
-    return;
-  }
-  if (calculator.firstOperand) {
+  if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand === '') return;
     calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
-    calculator.currentOperand = 'first';
-    return;
   }
+
+  if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand === '') {
+      calculator.currentOperator = null;
+      calculator.currentOperand = 'first';
+    }
+    calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
+  }
+
+  calculator.lastButton = 'delete';
+  calculator.currentScreen = '';
+  updateLastOperation();
+
 }
 
 function processClearButton() {
@@ -330,6 +333,7 @@ function updateCurrentOperationScreenUI() {
     currentOperatingScreen.textContent = `${firstOperand}`;
     return;
   }
+  currentOperatingScreen.textContent = '';
 
 }
 
