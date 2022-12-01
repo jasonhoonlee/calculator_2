@@ -366,3 +366,20 @@ function processOneOverButton() {
   updateLastOperation();
 }
 
+
+function processPercentageButton() {
+  if (calculator.currentOperand === 'first') {
+    if (isNumberValue(calculator.firstOperand)) {
+      calculator.firstOperand = String(Number(calculator.firstOperand)/100);
+    }
+  }
+
+  if (calculator.currentOperand === 'second') {
+    if (isNumberValue(calculator.secondOperand)) {
+      calculator.secondOperand = String(Number(calculator.secondOperand)/100);
+    }
+  }
+  calculator.lastButton = 'one-over';
+  calculator.currentScreen = '';
+  updateLastOperation();
+}
