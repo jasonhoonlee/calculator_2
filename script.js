@@ -379,7 +379,8 @@ function processPercentageButton() {
       calculator.secondOperand = String(Number(calculator.secondOperand)/100);
     }
   }
-  calculator.lastButton = 'one-over';
+  calculator.lastButton = 'percentage';
   calculator.currentScreen = '';
   updateLastOperation();
 }
+
