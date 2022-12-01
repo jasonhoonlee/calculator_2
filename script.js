@@ -293,7 +293,7 @@ function processMultiplicationButton() {
 function processEqualButton() {
   const firstOperand = calculator.firstOperand;
   const secondOperand = calculator.secondOperand;
-  if (!firstOperand && !secondOperand) return;
+  if (!(firstOperand && secondOperand)) return;
 
   updateLastOperation();
   const result = evaluate();
