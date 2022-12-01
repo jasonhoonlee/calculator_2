@@ -309,9 +309,12 @@ function updateCurrentOperationScreenUI() {
     return;
   }
 
-  const firstOperand = calculator.firstOperand;
-  const secondOperand = calculator.secondOperand;
+  let firstOperand = calculator.firstOperand;
+  let secondOperand = calculator.secondOperand;
   const currentOperator = calculator.currentOperator;
+
+  firstOperand = firstOperand.includes('-') ? `(${firstOperand})` : firstOperand;
+  secondOperand = secondOperand.includes('-') ? `(${secondOperand})` : secondOperand;
 
   if (secondOperand) {
     currentOperatingScreen.textContent = `${firstOperand} ${getOperatorSymbol(currentOperator)} ${secondOperand}`;
