@@ -31,3 +31,8 @@ header img {
   width: 6vw;
   height: 6vw;
 }
+
+/* MAIN */
+main {
+  text-align: center;
+}
