@@ -50,19 +50,21 @@ function processNumberButton(e) {
     calculator.currentOperand = 'first';
   }
   const number = e.target.textContent;
-  updateOperands(number);
+  updateOperandWithNumber(number);
   updateLastOperation();
   calculator.lastButton = 'number';
   calculator.currentScreen = '';
 }
 
-function updateOperands(number) {
+function updateOperandWithNumber(number) {
   if (!calculator.currentOperand) calculator.currentOperand = 'first';
   if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand === 'ERROR') return;
     calculator.firstOperand += number;
     return;
   }
   if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand === 'ERROR') return;
     calculator.secondOperand += number;
     return;
   }
