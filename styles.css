@@ -65,6 +65,10 @@ main {
   background-color: lightcyan;
   border-radius: 3%;
   height: 5vh;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 1vh;
 }
 
 .buttons {
@@ -72,9 +76,6 @@ main {
   flex-direction: column;
   gap: 1vh;
 }
-
-
-/* MAKE BUTTONS HOMOGENOUS */
 
 .btn {
   flex: 1;
