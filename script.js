@@ -110,10 +110,12 @@ function processDecimalButton() {
 function updateOperandsWithDecimal() {
   if (!calculator.currentOperand) calculator.currentOperand = 'first';
   if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand === 'ERROR') return;
     calculator.firstOperand += '.';
     return;
   }
   if (calculator.currentOperand === 'second') {
+    if (calculator.secondOperand === 'ERROR') return;
     calculator.secondOperand += '.';
     return;
   }
