@@ -38,8 +38,58 @@ main {
 }
 
 .calculator {
-  display: inline-block;
-  border-radius: 5%;
-  padding: 20px;
   background-color: lightsalmon;
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  display: inline-block;
+  padding: 2%;
+  border-radius: 5%;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  gap: 2vh;
+  margin-bottom: 10%;
+  border-radius: 5%;
+}
+
+.current-screen {
+  background-color: lightcyan;
+  border-radius: 3%;
+  height: 5vh;
+}
+
+.current-operating-screen {
+  background-color: lightcyan;
+  border-radius: 3%;
+  height: 5vh;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+}
+
+
+/* MAKE BUTTONS HOMOGENOUS */
+
+.btn {
+  flex: 1;
+  background-color: darkcyan;
+  color: gold;
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px;
+  font-weight: bolder;
+  border-style: none;
+  border-radius: 5%;
+  padding: 2vh;
+  width: 8vh;
+}
+
+.row {
+  display: flex;
+  gap: 1vh;
 }
