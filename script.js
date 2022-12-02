@@ -136,6 +136,7 @@ function processSignButton() {
 function updateOperandWithSign() {
   if (!calculator.currentOperand) calculator.currentOperand = 'first';
   if (calculator.currentOperand === 'first') {
+    if (calculator.firstOperand === 'ERROR') return;
     if (!calculator.firstOperand.includes('-')) {
         if (calculator.firstOperand === '') calculator.firstOperand = '-';
         else calculator.firstOperand = `-${calculator.firstOperand}`;
@@ -143,6 +144,7 @@ function updateOperandWithSign() {
        calculator.firstOperand = calculator.firstOperand.slice(1, calculator.firstOperand.length);
     }
   } else {
+    if (calculator.secondOperand === 'ERROR') return;
     if (!calculator.secondOperand.includes('-')) {
         if (calculator.secondOperand === '') calculator.secondOperand = '-';
         else calculator.secondOperand = `-${calculator.secondOperand}`;
