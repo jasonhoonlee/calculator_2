@@ -59,6 +59,11 @@ main {
   background-color: lightcyan;
   border-radius: 3%;
   height: 5vh;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 1vh;
+  font-size: 2em;
 }
 
 .current-operating-screen {
