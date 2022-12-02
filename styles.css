@@ -36,3 +36,10 @@ header img {
 main {
   text-align: center;
 }
+
+.calculator {
+  display: inline-block;
+  border-radius: 5%;
+  padding: 20px;
+  background-color: lightsalmon;
+}
