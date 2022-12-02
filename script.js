@@ -174,6 +174,10 @@ function resetCalculatorState() {
 function updateOperandWithDelete() {
   if (calculator.currentOperand === 'first') {
     if (calculator.firstOperand === '') return;
+    if (calculator.firstOperand === 'ERROR') {
+      calculator.firstOperand = '';
+      return;
+    }
     calculator.firstOperand = calculator.firstOperand.slice(0, calculator.firstOperand.length-1);
   }
 
@@ -182,12 +186,12 @@ function updateOperandWithDelete() {
       calculator.currentOperator = null;
       calculator.currentOperand = 'first';
     }
+    if (calculator.secondOperand === 'ERROR') {
+      calculator.secondOperand = '';
+      return;
+    }
     calculator.secondOperand = calculator.secondOperand.slice(0, calculator.secondOperand.length-1);
   }
-
-  calculator.lastButton = 'delete';
-  calculator.currentScreen = '';
-  updateLastOperation();
 
 }
 
