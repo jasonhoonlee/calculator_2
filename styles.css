@@ -6,6 +6,10 @@ html {
   width: 100vw;
 }
 
+body {
+  margin: 0;
+}
+
 /* HEADER */
 header {
   display: flex;
