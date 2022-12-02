@@ -4,6 +4,20 @@ html {
   background-color: lightcoral;
 }
 
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1vw;
+}
+
 h1 {
   color: yellow;
+  font-size: 5vw;
+}
+
+header img {
+  width: 6vw;
+  height: 6vw;
 }
