@@ -7,6 +7,9 @@ html {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin: 0;
 }
 
@@ -98,4 +101,30 @@ main {
 .row {
   display: flex;
   gap: 1vh;
+}
+
+
+/* FOOTER */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+
+.copyright p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+}
+
+.copyright a {
+  text-decoration: none;
+  color: black;
+}
+
+.copyright a:hover {
+  color: gold;
 }
